@@ -314,7 +314,7 @@ export default function AdminDoubtsPage() {
         open={!!selectedDoubt}
         onOpenChange={() => setSelectedDoubt(null)}
       >
-        <DialogContent className="sm:max-w-[600px] border-white/10 bg-background">
+        <DialogContent className="sm:max-w-150 border-white/10 bg-background">
           <DialogHeader>
             <DialogTitle>Respond to Doubt</DialogTitle>
             <DialogDescription>{selectedDoubt?.title}</DialogDescription>
@@ -334,7 +334,7 @@ export default function AdminDoubtsPage() {
                 placeholder="Type your response here. Use $...$ for inline math and $$...$$ for block math."
                 value={responseText}
                 onChange={(e) => setResponseText(e.target.value)}
-                className="min-h-[150px] border-white/10 bg-white/5"
+                className="min-h-37.5 border-white/10 bg-white/5"
               />
             </div>
             {responseText && (

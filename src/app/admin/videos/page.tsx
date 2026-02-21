@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { db } from "@/db";
 import { video } from "@/db/schema";
 import { desc } from "drizzle-orm";
@@ -58,10 +59,11 @@ export default async function AdminVideosPage() {
             >
               {/* Thumbnail */}
               <div className="relative aspect-video overflow-hidden">
-                <img
+                <Image
                   src={vid.thumbnail}
                   alt={vid.title}
-                  className="w-full h-full object-cover transition-transform group-hover:scale-105"
+                  fill
+                  className="object-cover transition-transform group-hover:scale-105"
                 />
                 <div className="absolute top-2 left-2 flex gap-1">
                   <span className="bg-purple-500/80 text-white text-xs px-2 py-1 rounded">

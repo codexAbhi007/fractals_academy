@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { toast } from "sonner";
 import { ArrowLeft, Loader2, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -187,10 +188,11 @@ export default function EditVideoPage({
         </CardHeader>
         <CardContent>
           <div className="relative aspect-video rounded-lg overflow-hidden border border-white/10">
-            <img
+            <Image
               src={video.thumbnail}
               alt={video.title}
-              className="w-full h-full object-cover"
+              fill
+              className="object-cover"
             />
             <div className="absolute inset-0 flex items-center justify-center bg-black/30">
               <a
@@ -308,7 +310,7 @@ export default function EditVideoPage({
               <Textarea
                 id="description"
                 placeholder="Optional description or notes for students..."
-                className="border-white/10 bg-white/5 min-h-[100px]"
+                className="border-white/10 bg-white/5 min-h-25"
                 value={formData.description}
                 onChange={(e) =>
                   setFormData({ ...formData, description: e.target.value })

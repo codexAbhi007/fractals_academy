@@ -7,7 +7,10 @@ interface QuestionOptionsProps {
   correctAnswer: number;
 }
 
-export function QuestionOptions({ options, correctAnswer }: QuestionOptionsProps) {
+export function QuestionOptions({
+  options,
+  correctAnswer,
+}: QuestionOptionsProps) {
   return (
     <div className="grid grid-cols-2 md:grid-cols-4 gap-2 text-sm">
       {options.map((option, optIndex) => (
@@ -23,8 +26,10 @@ export function QuestionOptions({ options, correctAnswer }: QuestionOptionsProps
             {String.fromCharCode(65 + optIndex)}.
           </span>
           <span className="wrap-break-word">
-            <LatexRenderer 
-              content={option.length > 50 ? option.slice(0, 50) + "..." : option} 
+            <LatexRenderer
+              content={
+                option.length > 50 ? option.slice(0, 50) + "..." : option
+              }
             />
           </span>
         </div>

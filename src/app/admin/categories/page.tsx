@@ -350,7 +350,7 @@ export default function AdminCategoriesPage() {
         </CardHeader>
         <CardContent className="space-y-4">
           <Select value={selectedSubject} onValueChange={handleSubjectChange}>
-            <SelectTrigger className="w-[200px] border-white/10 bg-white/5 cursor-pointer">
+            <SelectTrigger className="w-50 border-white/10 bg-white/5 cursor-pointer">
               <SelectValue placeholder="Select subject" />
             </SelectTrigger>
             <SelectContent>
@@ -368,7 +368,7 @@ export default function AdminCategoriesPage() {
 
           {selectedSubject && (
             <>
-              <div className="border border-white/10 rounded-lg p-4 max-h-[300px] overflow-y-auto">
+              <div className="border border-white/10 rounded-lg p-4 max-h-75 overflow-y-auto">
                 <div className="space-y-2">
                   {editingChapters.map((chap, idx) => (
                     <div

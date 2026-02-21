@@ -3,6 +3,7 @@
 import { useState, useEffect, use } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { toast } from "sonner";
 import { ArrowLeft, Loader2, Eye, Code, ImageIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -177,7 +178,7 @@ export default function EditQuestionPage({
       router.refresh();
     } catch (error) {
       toast.error(
-        error instanceof Error ? error.message : "Failed to update question"
+        error instanceof Error ? error.message : "Failed to update question",
       );
     } finally {
       setIsSubmitting(false);
@@ -205,9 +206,7 @@ export default function EditQuestionPage({
         </Link>
         <div>
           <h1 className="text-3xl font-bold">Edit Question</h1>
-          <p className="text-muted-foreground">
-            Update the question details
-          </p>
+          <p className="text-muted-foreground">Update the question details</p>
         </div>
       </div>
 
@@ -399,9 +398,11 @@ export default function EditQuestionPage({
                   />
                   {questionImage && (
                     <div className="mt-2 p-2 border border-white/10 rounded-lg">
-                      <img
+                      <Image
                         src={questionImage}
                         alt="Question preview"
+                        width={400}
+                        height={160}
                         className="max-h-40 rounded"
                         onError={(e) => {
                           (e.target as HTMLImageElement).style.display = "none";
@@ -426,7 +427,7 @@ export default function EditQuestionPage({
                       </div>
                       <Input
                         placeholder={`Option ${String.fromCharCode(
-                          65 + index
+                          65 + index,
                         )} - supports LaTeX`}
                         value={opt}
                         onChange={(e) =>
@@ -484,9 +485,11 @@ export default function EditQuestionPage({
 
                     {questionImage && (
                       <div className="py-2">
-                        <img
+                        <Image
                           src={questionImage}
                           alt="Question image"
+                          width={600}
+                          height={240}
                           className="max-h-60 rounded-lg border border-white/10"
                         />
                       </div>

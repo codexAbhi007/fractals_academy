@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { toast } from "sonner";
 import { ArrowLeft, Loader2, Eye, Code, ImageIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -330,7 +331,7 @@ export default function NewQuestionPage() {
                     placeholder="Enter your question here. Use $...$ for inline LaTeX and $$...$$ for display math."
                     value={questionText}
                     onChange={(e) => setQuestionText(e.target.value)}
-                    className="min-h-[120px] border-white/10 bg-white/5 font-mono"
+                    className="min-h-30 border-white/10 bg-white/5 font-mono"
                   />
                 </div>
 
@@ -347,10 +348,12 @@ export default function NewQuestionPage() {
                   />
                   {questionImage && (
                     <div className="mt-2 p-2 border border-white/10 rounded-lg">
-                      <img
+                      <Image
                         src={questionImage}
                         alt="Question preview"
                         className="max-h-40 rounded"
+                        width={300}
+                        height={160}
                         onError={(e) => {
                           (e.target as HTMLImageElement).style.display = "none";
                         }}
@@ -407,7 +410,7 @@ export default function NewQuestionPage() {
                     placeholder="Provide a detailed explanation of the solution. Supports LaTeX."
                     value={explanation}
                     onChange={(e) => setExplanation(e.target.value)}
-                    className="min-h-[80px] border-white/10 bg-white/5 font-mono"
+                    className="min-h-20 border-white/10 bg-white/5 font-mono"
                   />
                 </div>
               </TabsContent>
@@ -432,10 +435,12 @@ export default function NewQuestionPage() {
 
                     {questionImage && (
                       <div className="py-2">
-                        <img
+                        <Image
                           src={questionImage}
                           alt="Question image"
                           className="max-h-60 rounded-lg border border-white/10"
+                          width={500}
+                          height={300}
                         />
                       </div>
                     )}

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { toast } from "sonner";
 import {
   Video,
@@ -627,10 +628,11 @@ export function DashboardContent({ user }: DashboardContentProps) {
                             markVideoWatched(v.id, true, v.youtubeId)
                           }
                         >
-                          <img
+                          <Image
                             src={v.thumbnail}
                             alt={v.title}
-                            className="w-full h-full object-cover"
+                            fill
+                            className="object-cover"
                           />
                           <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                             <Play className="h-10 w-10 text-white" />

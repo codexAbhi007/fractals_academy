@@ -113,9 +113,9 @@ export default async function AdminQuestionsPage() {
                 </div>
               </CardHeader>
               <CardContent>
-                <QuestionOptions 
-                  options={q.options as string[]} 
-                  correctAnswer={q.correctAnswer} 
+                <QuestionOptions
+                  options={q.options as string[]}
+                  correctAnswer={q.correctAnswer}
                 />
               </CardContent>
             </Card>
