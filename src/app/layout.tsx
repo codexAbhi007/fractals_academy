@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  icons:{
+  icons: {
     icon: "/favicon.png",
   },
   title: "Fractals Academy | Mathematics Learning Hub",
