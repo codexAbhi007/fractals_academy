@@ -5,6 +5,7 @@ import {
   FeaturesSection,
   AboutSection,
   LatestVideosSection,
+  ContactSection,
   CTASection,
   Footer,
 } from "@/components/landing";
@@ -42,7 +43,10 @@ export default async function Home({
         <section id="videos">
           <LatestVideosSection />
         </section>
-        <CTASection />
+        {/* <CTASection /> */}
+        <section id="contact">
+          <ContactSection />
+        </section>
       </main>
       <Footer />
     </div>

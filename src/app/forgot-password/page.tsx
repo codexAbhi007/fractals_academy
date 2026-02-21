@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
 import { ArrowLeft, Loader2, Mail } from "lucide-react";
@@ -58,9 +59,13 @@ export default function ForgotPasswordPage() {
               href="/"
               className="flex items-center justify-center gap-2 mb-4"
             >
-              <div className="h-10 w-10 rounded-lg bg-linear-to-br from-purple-500 to-pink-500 flex items-center justify-center">
-                <span className="text-white font-bold">FA</span>
-              </div>
+              <Image
+                src="/logo.png"
+                alt="Fractals Academy"
+                width={64}
+                height={64}
+                className="rounded-lg"
+              />
             </Link>
             <CardTitle className="text-2xl font-bold">
               {isEmailSent ? "Check your email" : "Forgot password?"}

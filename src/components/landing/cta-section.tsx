@@ -48,7 +48,7 @@ export function CTASection() {
             </Link>
 
             <Link
-              href="#"
+              href="#contact"
               className="text-muted-foreground hover:text-foreground transition-colors"
             >
               Contact Us →

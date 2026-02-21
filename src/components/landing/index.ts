@@ -3,5 +3,6 @@ export { HeroSection } from "./hero-section";
 export { FeaturesSection } from "./features-section";
 export { AboutSection } from "./about-section";
 export { LatestVideosSection } from "./videos-section";
+export { ContactSection } from "./contact-section";
 export { CTASection } from "./cta-section";
 export { Footer } from "./footer";

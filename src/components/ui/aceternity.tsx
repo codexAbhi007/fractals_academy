@@ -13,7 +13,7 @@ export function Spotlight({ className, fill }: SpotlightProps) {
   return (
     <svg
       className={cn(
-        "pointer-events-none absolute z-[1] h-[169%] w-[138%] lg:w-[84%] opacity-0 animate-spotlight",
+        "pointer-events-none absolute z-1 h-[169%] w-[138%] lg:w-[84%] opacity-0 animate-spotlight",
         className,
       )}
       xmlns="http://www.w3.org/2000/svg"
@@ -138,7 +138,6 @@ export function BackgroundBeams({ className }: { className?: string }) {
     <div className={cn("absolute inset-0 z-0 overflow-hidden", className)}>
       <div className="absolute -top-40 -right-40 h-80 w-80 rounded-full bg-purple-500/30 blur-3xl" />
       <div className="absolute -bottom-40 -left-40 h-80 w-80 rounded-full bg-cyan-500/30 blur-3xl" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-96 w-96 rounded-full bg-pink-500/20 blur-3xl" />
     </div>
   );
 }
@@ -187,7 +186,7 @@ export function GridBackground({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "absolute inset-0 z-0 bg-[linear-gradient(to_right,#4f4f4f1a_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f1a_1px,transparent_1px)] bg-[size:24px_24px]",
+        "absolute inset-0 z-0 bg-[linear-gradient(to_right,#4f4f4f1a_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f1a_1px,transparent_1px)] bg-size-[24px_24px]",
         className,
       )}
     >
@@ -244,7 +243,7 @@ export function HoverBorderGradient({
   return (
     <Component
       className={cn(
-        "relative group/btn overflow-hidden rounded-full p-[2px] transition-all",
+        "relative group/btn overflow-hidden rounded-full p-0.5 transition-all",
         containerClassName,
       )}
       {...props}

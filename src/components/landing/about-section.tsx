@@ -54,12 +54,12 @@ export function AboutSection() {
                 },
                 {
                   icon: Users,
-                  label: "500+ Students",
+                  label: "50+ Students",
                   position: "bottom-0 right-0",
                 },
                 {
                   icon: BookOpen,
-                  label: "1000+ Lessons",
+                  label: "100+ Lessons",
                   position: "bottom-0 left-0",
                 },
               ].map((badge, idx) => (

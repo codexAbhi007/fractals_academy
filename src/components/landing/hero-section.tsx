@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/aceternity";
 import { Button } from "@/components/ui/button";
 import { useSession } from "@/lib/auth-client";
+import { contactData } from "@/lib/contact-data";
 
 // Helper to detect client-side mounting
 const subscribe = () => () => {};
@@ -44,7 +45,7 @@ export function HeroSection() {
         >
           <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm text-muted-foreground backdrop-blur-sm">
             <span className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
-            Admissions Open
+            Admissions Open (Online & Offline)
           </span>
         </motion.div>
 
@@ -114,7 +115,7 @@ export function HeroSection() {
           className="mt-6"
         >
           <a
-            href="tel:+919876543210"
+            href={`tel:${contactData.phone.link}`}
             className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-green-500/10 border border-green-500/30 hover:bg-green-500/20 transition-all group cursor-pointer"
           >
             <span className="relative flex h-10 w-10 items-center justify-center">
@@ -126,7 +127,7 @@ export function HeroSection() {
             <div className="text-left">
               <div className="text-xs text-green-400 font-medium">Call Now</div>
               <div className="text-lg font-bold text-white group-hover:text-green-300 transition-colors">
-                +91 62910 05461
+                {contactData.phone.display}
               </div>
             </div>
           </a>
@@ -139,9 +140,9 @@ export function HeroSection() {
           className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-3xl mx-auto"
         >
           {[
-            { number: "500+", label: "Students Taught" },
+            { number: "50+", label: "Students Taught" },
             { number: "95%", label: "Success Rate" },
-            { number: "6+", label: "Years Experience" },
+            { number: "3+", label: "Years Experience" },
             { number: "1000+", label: "Problems Solved" },
           ].map((stat, idx) => (
             <div key={idx} className="text-center">
