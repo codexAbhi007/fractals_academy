@@ -51,12 +51,15 @@ const features = [
 
 export function FeaturesSection() {
   return (
-    <section id="features" className="relative py-24 bg-gradient-to-b from-background to-background/50">
+    <section
+      id="features"
+      className="relative py-24 bg-linear-to-b from-background to-background/50"
+    >
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Everything You Need to{" "}
-            <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
               Excel
             </span>
           </h2>

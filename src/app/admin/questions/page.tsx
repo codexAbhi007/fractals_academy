@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { DeleteQuestionButton } from "./delete-question-button";
+import { QuestionOptions } from "./question-options";
 
 async function getQuestions() {
   return await db.select().from(question).orderBy(desc(question.createdAt));
@@ -37,7 +38,7 @@ export default async function AdminQuestionsPage() {
           </p>
         </div>
         <Link href="/admin/questions/new">
-          <Button className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600">
+          <Button className="bg-linear-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600">
             <Plus className="h-4 w-4 mr-2" />
             Add Question
           </Button>
@@ -112,27 +113,10 @@ export default async function AdminQuestionsPage() {
                 </div>
               </CardHeader>
               <CardContent>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-2 text-sm">
-                  {(q.options as string[]).map((option, optIndex) => (
-                    <div
-                      key={optIndex}
-                      className={`p-2 rounded-lg border ${
-                        optIndex === q.correctAnswer
-                          ? "border-green-500/50 bg-green-500/10 text-green-400"
-                          : "border-white/10 bg-white/5 text-muted-foreground"
-                      }`}
-                    >
-                      <span className="font-medium mr-1">
-                        {String.fromCharCode(65 + optIndex)}.
-                      </span>
-                      <span className="break-words">
-                        {option.length > 30
-                          ? option.slice(0, 30) + "..."
-                          : option}
-                      </span>
-                    </div>
-                  ))}
-                </div>
+                <QuestionOptions 
+                  options={q.options as string[]} 
+                  correctAnswer={q.correctAnswer} 
+                />
               </CardContent>
             </Card>
           ))}

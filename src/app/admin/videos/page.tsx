@@ -30,7 +30,7 @@ export default async function AdminVideosPage() {
           </p>
         </div>
         <Link href="/admin/videos/new">
-          <Button className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600">
+          <Button className="bg-linear-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600">
             <Plus className="h-4 w-4 mr-2" />
             Add Video
           </Button>

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useSyncExternalStore } from "react";
 import { motion } from "framer-motion";
 import { Phone } from "lucide-react";
 import {
@@ -11,8 +12,24 @@ import {
   TextGenerateEffect,
 } from "@/components/ui/aceternity";
 import { Button } from "@/components/ui/button";
+import { useSession } from "@/lib/auth-client";
+
+// Helper to detect client-side mounting
+const subscribe = () => () => {};
+const getSnapshot = () => true;
+const getServerSnapshot = () => false;
 
 export function HeroSection() {
+  const { data: session, isPending } = useSession();
+  const mounted = useSyncExternalStore(
+    subscribe,
+    getSnapshot,
+    getServerSnapshot,
+  );
+
+  const isAdmin = (session?.user as { role?: string })?.role === "ADMIN";
+  const isStudent = session?.user && !isAdmin;
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pb-8">
       <GridBackground />
@@ -27,7 +44,7 @@ export function HeroSection() {
         >
           <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm text-muted-foreground backdrop-blur-sm">
             <span className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
-            Now Enrolling for 2026 Batch
+            Admissions Open
           </span>
         </motion.div>
 
@@ -62,19 +79,31 @@ export function HeroSection() {
           transition={{ duration: 0.5, delay: 0.9 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
-          <Link href="/signup">
-            <HoverBorderGradient>Start Learning Today</HoverBorderGradient>
-          </Link>
+          {mounted && !isPending && isAdmin ? (
+            <Link href="/admin">
+              <HoverBorderGradient>Go to Admin Panel</HoverBorderGradient>
+            </Link>
+          ) : mounted && !isPending && isStudent ? (
+            <Link href="/dashboard">
+              <HoverBorderGradient>Go to Dashboard</HoverBorderGradient>
+            </Link>
+          ) : (
+            <>
+              <Link href="/signup">
+                <HoverBorderGradient>Start Learning Today</HoverBorderGradient>
+              </Link>
 
-          <Link href="/login">
-            <Button
-              variant="ghost"
-              size="lg"
-              className="rounded-full border border-white/10 hover:bg-white/5"
-            >
-              Sign In →
-            </Button>
-          </Link>
+              <Link href="/login">
+                <Button
+                  variant="ghost"
+                  size="lg"
+                  className="rounded-full border border-white/10 hover:bg-white/5"
+                >
+                  Sign In →
+                </Button>
+              </Link>
+            </>
+          )}
         </motion.div>
 
         {/* Contact Now Section */}
@@ -116,7 +145,7 @@ export function HeroSection() {
             { number: "1000+", label: "Problems Solved" },
           ].map((stat, idx) => (
             <div key={idx} className="text-center">
-              <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+              <div className="text-3xl md:text-4xl font-bold bg-linear-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
                 {stat.number}
               </div>
               <div className="text-sm text-muted-foreground mt-1">

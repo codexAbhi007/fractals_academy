@@ -3,6 +3,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import { Play, Loader2 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
@@ -38,13 +39,14 @@ function VideoCard({ video, index }: VideoCardProps) {
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       onClick={handleClick}
-      className="group relative overflow-hidden rounded-xl border border-white/10 bg-gradient-to-b from-white/5 to-transparent backdrop-blur-sm transition-all duration-300 hover:border-white/20 cursor-pointer"
+      className="group relative overflow-hidden rounded-xl border border-white/10 bg-linear-to-b from-white/5 to-transparent backdrop-blur-sm transition-all duration-300 hover:border-white/20 cursor-pointer"
     >
       {/* Thumbnail */}
       <div className="relative aspect-video overflow-hidden">
-        <img
+        <Image
           src={video.thumbnail}
           alt={video.title}
+          fill
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
@@ -109,7 +111,7 @@ export function LatestVideosSection() {
     <section
       id="videos"
       ref={ref}
-      className="relative py-24 bg-gradient-to-b from-background/50 to-background"
+      className="relative py-24 bg-linear-to-b from-background/50 to-background"
     >
       <div className="container mx-auto px-4">
         <motion.div
@@ -120,7 +122,7 @@ export function LatestVideosSection() {
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Latest{" "}
-            <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
               Video Lectures
             </span>
           </h2>

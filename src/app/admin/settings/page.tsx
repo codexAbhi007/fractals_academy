@@ -73,7 +73,7 @@ export default function AdminSettingsPage() {
             <Button
               onClick={handleSave}
               disabled={saving}
-              className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 cursor-pointer"
+              className="bg-linear-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 cursor-pointer"
             >
               {saving ? (
                 <>
@@ -102,7 +102,7 @@ export default function AdminSettingsPage() {
           <CardContent className="space-y-4">
             <div className="flex items-center justify-between py-3 border-b border-white/10">
               <span className="text-muted-foreground">Role</span>
-              <Badge className="bg-gradient-to-r from-purple-500 to-pink-500">
+              <Badge className="bg-linear-to-r from-purple-500 to-pink-500">
                 ADMIN
               </Badge>
             </div>

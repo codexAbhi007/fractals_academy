@@ -1,3 +1,4 @@
+import { redirect } from "next/navigation";
 import {
   Navbar,
   HeroSection,
@@ -7,8 +8,26 @@ import {
   CTASection,
   Footer,
 } from "@/components/landing";
+import { getServerSession } from "@/lib/session";
 
-export default function Home() {
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: Promise<{ home?: string }>;
+}) {
+  const session = await getServerSession();
+  const params = await searchParams;
+
+  // Only redirect if user is logged in AND they didn't explicitly click "Home"
+  if (session?.user && !("home" in params)) {
+    const isAdmin = (session.user as { role?: string }).role === "ADMIN";
+    if (isAdmin) {
+      redirect("/admin");
+    } else {
+      redirect("/dashboard");
+    }
+  }
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />

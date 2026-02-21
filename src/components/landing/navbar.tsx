@@ -34,12 +34,12 @@ export function Navbar() {
       <div className="container mx-auto px-4">
         <nav className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
+          <Link href="/?home" className="flex items-center gap-2">
             <Image
               src="/logo.png"
               alt="Fractals Academy"
-              width={48}
-              height={48}
+              width={64}
+              height={64}
               className="rounded-lg"
             />
             <span className="font-bold text-lg hidden sm:block">
@@ -72,7 +72,14 @@ export function Navbar() {
           {/* Auth Buttons */}
           <div className="flex items-center gap-3">
             {mounted && !isPending && session?.user ? (
-              <Link href="/dashboard" className="flex items-center gap-2">
+              <Link
+                href={
+                  (session.user as { role?: string }).role === "ADMIN"
+                    ? "/admin"
+                    : "/dashboard"
+                }
+                className="flex items-center gap-2"
+              >
                 <Avatar className="h-8 w-8 cursor-pointer hover:ring-2 hover:ring-purple-500 transition-all">
                   <AvatarImage src={session.user.image || undefined} />
                   <AvatarFallback className="bg-purple-500/20 text-purple-400">
@@ -97,7 +104,7 @@ export function Navbar() {
                 <Link href="/signup">
                   <Button
                     size="sm"
-                    className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white border-0 cursor-pointer hover:scale-105 active:scale-95 transition-transform"
+                    className="bg-linear-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white border-0 cursor-pointer hover:scale-105 active:scale-95 transition-transform"
                   >
                     Get Started
                   </Button>

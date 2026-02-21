@@ -12,7 +12,7 @@ export function AboutSection() {
   return (
     <section id="about" ref={ref} className="relative py-24 overflow-hidden">
       {/* Background decoration */}
-      <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 via-transparent to-cyan-500/10" />
+      <div className="absolute inset-0 bg-linear-to-r from-purple-500/10 via-transparent to-cyan-500/10" />
 
       <div className="container relative z-10 mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -36,7 +36,7 @@ export function AboutSection() {
               />
 
               {/* Center content */}
-              <div className="absolute inset-12 rounded-full bg-gradient-to-br from-purple-500/20 to-cyan-500/20 backdrop-blur-sm flex items-center justify-center overflow-hidden">
+              <div className="absolute inset-12 rounded-full bg-linear-to-br from-purple-500/20 to-cyan-500/20 backdrop-blur-sm flex items-center justify-center overflow-hidden">
                 <Image
                   src="/sayantan.jpg"
                   alt="Sayantan Sarcar"
@@ -85,7 +85,7 @@ export function AboutSection() {
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
               About{" "}
-              <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+              <span className="bg-linear-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
                 Fractals Academy
               </span>
             </h2>

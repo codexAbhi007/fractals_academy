@@ -121,12 +121,12 @@ export function GlowingText({
   return (
     <span
       className={cn(
-        "relative bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-500 bg-clip-text text-transparent",
+        "relative bg-linear-to-r from-purple-500 via-pink-500 to-cyan-500 bg-clip-text text-transparent",
         className,
       )}
     >
       {children}
-      <span className="absolute inset-0 bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-500 bg-clip-text text-transparent blur-xl opacity-50">
+      <span className="absolute inset-0 bg-linear-to-r from-purple-500 via-pink-500 to-cyan-500 bg-clip-text text-transparent blur-xl opacity-50">
         {children}
       </span>
     </span>
@@ -191,7 +191,7 @@ export function GridBackground({ className }: { className?: string }) {
         className,
       )}
     >
-      <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
+      <div className="absolute inset-0 bg-linear-to-t from-background via-transparent to-transparent" />
     </div>
   );
 }
@@ -219,7 +219,7 @@ export function AnimatedCard({
         ease: [0.4, 0, 0.2, 1],
       }}
       className={cn(
-        "group relative overflow-hidden rounded-xl border border-white/10 bg-gradient-to-b from-white/5 to-transparent p-6 backdrop-blur-sm transition-all duration-300 hover:border-white/20 hover:bg-white/5",
+        "group relative overflow-hidden rounded-xl border border-white/10 bg-linear-to-b from-white/5 to-transparent p-6 backdrop-blur-sm transition-all duration-300 hover:border-white/20 hover:bg-white/5",
         className,
       )}
     >

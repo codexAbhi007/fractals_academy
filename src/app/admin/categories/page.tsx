@@ -266,7 +266,7 @@ export default function AdminCategoriesPage() {
             <Button
               onClick={saveClasses}
               disabled={saving === "classes"}
-              className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 cursor-pointer"
+              className="w-full bg-linear-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 cursor-pointer"
             >
               {saving === "classes" ? (
                 <Loader2 className="h-4 w-4 animate-spin" />
@@ -321,7 +321,7 @@ export default function AdminCategoriesPage() {
             <Button
               onClick={saveSubjects}
               disabled={saving === "subjects"}
-              className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 cursor-pointer"
+              className="w-full bg-linear-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 cursor-pointer"
             >
               {saving === "subjects" ? (
                 <Loader2 className="h-4 w-4 animate-spin" />
@@ -406,7 +406,7 @@ export default function AdminCategoriesPage() {
                 <Button
                   onClick={saveChapters}
                   disabled={saving === "chapters"}
-                  className="flex-1 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 cursor-pointer"
+                  className="flex-1 bg-linear-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 cursor-pointer"
                 >
                   {saving === "chapters" ? (
                     <Loader2 className="h-4 w-4 animate-spin" />
@@ -447,7 +447,7 @@ export default function AdminCategoriesPage() {
             </Button>
             <Button
               onClick={addClass}
-              className="bg-gradient-to-r from-purple-500 to-pink-500 cursor-pointer"
+              className="bg-linear-to-r from-purple-500 to-pink-500 cursor-pointer"
             >
               Add
             </Button>
@@ -479,7 +479,7 @@ export default function AdminCategoriesPage() {
             </Button>
             <Button
               onClick={addSubject}
-              className="bg-gradient-to-r from-purple-500 to-pink-500 cursor-pointer"
+              className="bg-linear-to-r from-purple-500 to-pink-500 cursor-pointer"
             >
               Add
             </Button>
@@ -513,7 +513,7 @@ export default function AdminCategoriesPage() {
             </Button>
             <Button
               onClick={addChapter}
-              className="bg-gradient-to-r from-purple-500 to-pink-500 cursor-pointer"
+              className="bg-linear-to-r from-purple-500 to-pink-500 cursor-pointer"
             >
               Add
             </Button>

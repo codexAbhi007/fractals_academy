@@ -101,7 +101,7 @@ export default function SignUpPage() {
               href="/"
               className="flex items-center justify-center gap-2 mb-4"
             >
-              <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
+              <div className="h-10 w-10 rounded-lg bg-linear-to-br from-purple-500 to-pink-500 flex items-center justify-center">
                 <span className="text-white font-bold">FA</span>
               </div>
             </Link>
@@ -246,7 +246,7 @@ export default function SignUpPage() {
 
               <Button
                 type="submit"
-                className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white border-0"
+                className="w-full bg-linear-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white border-0"
                 disabled={isLoading}
               >
                 {isLoading ? (

@@ -354,7 +354,7 @@ export default function AdminAnalyticsPage() {
                     </div>
                     <div className="h-2 bg-white/10 rounded-full overflow-hidden">
                       <div
-                        className="h-full bg-gradient-to-r from-pink-500 to-purple-500"
+                        className="h-full bg-linear-to-r from-pink-500 to-purple-500"
                         style={{ width: `${percentage}%` }}
                       />
                     </div>
@@ -387,7 +387,7 @@ export default function AdminAnalyticsPage() {
                   key={performer.userId}
                   className="flex items-center gap-3 p-3 rounded-lg bg-white/5 border border-white/10"
                 >
-                  <div className="flex items-center justify-center w-8 h-8 rounded-full bg-gradient-to-br from-yellow-500/20 to-orange-500/20 text-yellow-400 font-bold text-sm">
+                  <div className="flex items-center justify-center w-8 h-8 rounded-full bg-linear-to-br from-yellow-500/20 to-orange-500/20 text-yellow-400 font-bold text-sm">
                     {idx + 1}
                   </div>
                   <Avatar className="h-8 w-8">

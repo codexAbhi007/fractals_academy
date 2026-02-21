@@ -14,6 +14,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  icons:{
+    icon: "/favicon.png",
+  },
   title: "Fractals Academy | Mathematics Learning Hub",
   description:
     "Comprehensive e-learning platform for Class 7-12, JEE & WBJEE preparation. Expert guidance by Sayantan Sarcar in Baruipur, Kolkata.",

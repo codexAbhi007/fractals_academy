@@ -335,7 +335,7 @@ export default function NewVideoPage() {
           <Button
             type="submit"
             disabled={isLoading || !preview}
-            className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600"
+            className="bg-linear-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600"
           >
             {isLoading ? (
               <>

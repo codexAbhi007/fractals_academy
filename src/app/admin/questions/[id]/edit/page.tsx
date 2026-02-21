@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { toast } from "sonner";
@@ -34,9 +34,29 @@ interface CategoriesData {
   chapters: Record<string, string[]>;
 }
 
-export default function NewQuestionPage() {
+interface QuestionData {
+  id: string;
+  classLevel: string;
+  subject: string;
+  chapter: string;
+  topic: string;
+  difficulty: string;
+  questionText: string;
+  questionImage: string | null;
+  options: string[];
+  correctAnswer: number;
+  explanation: string | null;
+}
+
+export default function EditQuestionPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = use(params);
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [activeTab, setActiveTab] = useState<"edit" | "preview">("edit");
 
   // Dynamic categories
@@ -55,6 +75,7 @@ export default function NewQuestionPage() {
   const [correctAnswer, setCorrectAnswer] = useState<number>(0);
   const [explanation, setExplanation] = useState<string>("");
 
+  // Fetch categories
   useEffect(() => {
     const fetchCategories = async () => {
       try {
@@ -71,6 +92,37 @@ export default function NewQuestionPage() {
     };
     fetchCategories();
   }, []);
+
+  // Fetch question data
+  useEffect(() => {
+    const fetchQuestion = async () => {
+      try {
+        const res = await fetch(`/api/admin/questions/${id}`);
+        if (!res.ok) {
+          throw new Error("Question not found");
+        }
+        const data = await res.json();
+        const q: QuestionData = data.question;
+
+        setClassLevel(q.classLevel);
+        setSubject(q.subject);
+        setChapter(q.chapter);
+        setTopic(q.topic);
+        setDifficulty(q.difficulty);
+        setQuestionText(q.questionText);
+        setQuestionImage(q.questionImage || "");
+        setOptions(q.options);
+        setCorrectAnswer(q.correctAnswer);
+        setExplanation(q.explanation || "");
+      } catch {
+        toast.error("Failed to load question");
+        router.push("/admin/questions");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchQuestion();
+  }, [id, router]);
 
   const handleOptionChange = (index: number, value: string) => {
     const newOptions = [...options];
@@ -98,8 +150,8 @@ export default function NewQuestionPage() {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch("/api/admin/questions", {
-        method: "POST",
+      const response = await fetch(`/api/admin/questions/${id}`, {
+        method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           classLevel,
@@ -117,15 +169,15 @@ export default function NewQuestionPage() {
 
       if (!response.ok) {
         const error = await response.json();
-        throw new Error(error.error || "Failed to create question");
+        throw new Error(error.error || "Failed to update question");
       }
 
-      toast.success("Question created successfully!");
+      toast.success("Question updated successfully!");
       router.push("/admin/questions");
       router.refresh();
     } catch (error) {
       toast.error(
-        error instanceof Error ? error.message : "Failed to create question",
+        error instanceof Error ? error.message : "Failed to update question"
       );
     } finally {
       setIsSubmitting(false);
@@ -135,7 +187,7 @@ export default function NewQuestionPage() {
   const availableChapters =
     subject && categories ? categories.chapters[subject] || [] : [];
 
-  if (loadingCategories) {
+  if (isLoading || loadingCategories) {
     return (
       <div className="flex items-center justify-center py-24">
         <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
@@ -152,9 +204,9 @@ export default function NewQuestionPage() {
           </Button>
         </Link>
         <div>
-          <h1 className="text-3xl font-bold">Add New Question</h1>
+          <h1 className="text-3xl font-bold">Edit Question</h1>
           <p className="text-muted-foreground">
-            Create a new practice question with LaTeX support
+            Update the question details
           </p>
         </div>
       </div>
@@ -330,7 +382,7 @@ export default function NewQuestionPage() {
                     placeholder="Enter your question here. Use $...$ for inline LaTeX and $$...$$ for display math."
                     value={questionText}
                     onChange={(e) => setQuestionText(e.target.value)}
-                    className="min-h-[120px] border-white/10 bg-white/5 font-mono"
+                    className="min-h-30 border-white/10 bg-white/5 font-mono"
                   />
                 </div>
 
@@ -374,7 +426,7 @@ export default function NewQuestionPage() {
                       </div>
                       <Input
                         placeholder={`Option ${String.fromCharCode(
-                          65 + index,
+                          65 + index
                         )} - supports LaTeX`}
                         value={opt}
                         onChange={(e) =>
@@ -407,7 +459,7 @@ export default function NewQuestionPage() {
                     placeholder="Provide a detailed explanation of the solution. Supports LaTeX."
                     value={explanation}
                     onChange={(e) => setExplanation(e.target.value)}
-                    className="min-h-[80px] border-white/10 bg-white/5 font-mono"
+                    className="min-h-20 border-white/10 bg-white/5 font-mono"
                   />
                 </div>
               </TabsContent>
@@ -496,10 +548,10 @@ export default function NewQuestionPage() {
             {isSubmitting ? (
               <>
                 <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                Creating...
+                Updating...
               </>
             ) : (
-              "Create Question"
+              "Update Question"
             )}
           </Button>
         </div>

@@ -58,7 +58,7 @@ export default function ForgotPasswordPage() {
               href="/"
               className="flex items-center justify-center gap-2 mb-4"
             >
-              <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
+              <div className="h-10 w-10 rounded-lg bg-linear-to-br from-purple-500 to-pink-500 flex items-center justify-center">
                 <span className="text-white font-bold">FA</span>
               </div>
             </Link>
@@ -76,7 +76,7 @@ export default function ForgotPasswordPage() {
             {isEmailSent ? (
               <div className="space-y-4">
                 <div className="flex justify-center">
-                  <div className="h-16 w-16 rounded-full bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center">
+                  <div className="h-16 w-16 rounded-full bg-linear-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center">
                     <Mail className="h-8 w-8 text-purple-400" />
                   </div>
                 </div>
@@ -122,7 +122,7 @@ export default function ForgotPasswordPage() {
 
                 <Button
                   type="submit"
-                  className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white border-0"
+                  className="w-full bg-linear-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white border-0"
                   disabled={isLoading}
                 >
                   {isLoading ? (

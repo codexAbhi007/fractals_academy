@@ -323,7 +323,7 @@ export default function EditVideoPage({
           <Button
             type="submit"
             disabled={isLoading}
-            className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 cursor-pointer"
+            className="bg-linear-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 cursor-pointer"
           >
             {isLoading ? (
               <>
