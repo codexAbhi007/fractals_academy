@@ -5,7 +5,7 @@ export const contactData = {
     display: "+91 6291 005461",
     link: "916291005461", // Without spaces or dashes for tel: link
   },
-  email: "fractalsacademy@gmail.com",
+  email: "fractals.academy2000@gmail.com",
   whatsapp: {
     number: "916291005461", // Country code + number without + or spaces
     message: "Hi, I'm interested in Fractals Academy courses",
