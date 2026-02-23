@@ -38,9 +38,10 @@ export function Navbar() {
             <Image
               src="/logo.png"
               alt="Fractals Academy"
-              width={64}
-              height={64}
+              width={40}
+              height={40}
               className="rounded-lg"
+              style={{ width: "auto", height: "auto" }}
             />
             <span className="font-bold text-lg hidden sm:block">
               Fractals Academy

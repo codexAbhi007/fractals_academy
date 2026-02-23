@@ -9,6 +9,7 @@ import {
   CTASection,
   Footer,
 } from "@/components/landing";
+import { ScrollToTop } from "@/components/ui/scroll-to-top";
 import { getServerSession } from "@/lib/session";
 
 export default async function Home({
@@ -49,6 +50,7 @@ export default async function Home({
         </section>
       </main>
       <Footer />
+      <ScrollToTop />
     </div>
   );
 }

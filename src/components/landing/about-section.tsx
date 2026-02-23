@@ -41,6 +41,7 @@ export function AboutSection() {
                   src="/sayantan.jpg"
                   alt="Sayantan Sarcar"
                   fill
+                  sizes="(max-width: 768px) 200px, 300px"
                   className="object-cover object-[center_5%]"
                 />
               </div>

@@ -47,6 +47,7 @@ function VideoCard({ video, index }: VideoCardProps) {
           src={video.thumbnail}
           alt={video.title}
           fill
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">

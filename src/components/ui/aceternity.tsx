@@ -143,16 +143,36 @@ export function BackgroundBeams({ className }: { className?: string }) {
 }
 
 export function FloatingParticles({ className }: { className?: string }) {
-  const [particles] = useState(() =>
-    Array.from({ length: 50 }, (_, i) => ({
-      id: i,
-      x: Math.random() * 100,
-      y: Math.random() * 100,
-      size: Math.random() * 4 + 1,
-      duration: Math.random() * 20 + 10,
-      delay: Math.random() * 5,
-    })),
-  );
+  const [particles, setParticles] = useState<
+    {
+      id: number;
+      x: number;
+      y: number;
+      size: number;
+      duration: number;
+      delay: number;
+    }[]
+  >([]);
+
+  useEffect(() => {
+    // Generate particles only on client to avoid hydration mismatch
+    setParticles(
+      Array.from({ length: 50 }, (_, i) => ({
+        id: i,
+        x: Math.random() * 100,
+        y: Math.random() * 100,
+        size: Math.random() * 4 + 1,
+        duration: Math.random() * 20 + 10,
+        delay: Math.random() * 5,
+      })),
+    );
+  }, []);
+
+  if (particles.length === 0) {
+    return (
+      <div className={cn("absolute inset-0 overflow-hidden", className)} />
+    );
+  }
 
   return (
     <div className={cn("absolute inset-0 overflow-hidden", className)}>

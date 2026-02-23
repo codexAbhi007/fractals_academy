@@ -1,7 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 
 // Define public routes that don't require authentication
-const publicRoutes = ["/", "/login", "/signup"];
+const publicRoutes = ["/", "/login", "/signup", "/auth/callback"];
 
 // Define auth-only routes (routes that authenticated users shouldn't access)
 const authOnlyRoutes = ["/login", "/signup"];
