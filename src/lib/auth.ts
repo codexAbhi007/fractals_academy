@@ -14,8 +14,7 @@ export const auth = betterAuth({
     },
   }),
   emailAndPassword: {
-    enabled: true,
-    requireEmailVerification: false, // Set to true in production with email service
+    enabled: false, // OAuth only
   },
   socialProviders: {
     google: {
@@ -42,8 +41,8 @@ export const auth = betterAuth({
     },
   },
   trustedOrigins: [
-    "http://localhost:3000",
     process.env.BETTER_AUTH_URL || "http://localhost:3000",
+    process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000",
   ],
 });
 

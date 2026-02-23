@@ -29,9 +29,18 @@ export default function ForgotPasswordPage() {
     setIsLoading(true);
 
     try {
-      // Note: Forgot password requires email service (Resend) to be configured
-      // For now, show a message that this feature will be available soon
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      const response = await fetch("/api/auth/forgot-password", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        toast.error(data.error || "Something went wrong.");
+        return;
+      }
 
       setIsEmailSent(true);
       toast.success("Password reset email sent!");
