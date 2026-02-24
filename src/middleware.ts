@@ -18,8 +18,10 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  // Get session from cookie
-  const sessionToken = request.cookies.get("better-auth.session_token")?.value;
+  // Get session from cookie (check both dev and production cookie names)
+  const sessionToken =
+    request.cookies.get("better-auth.session_token")?.value ||
+    request.cookies.get("__Secure-better-auth.session_token")?.value;
   const isAuthenticated = !!sessionToken;
 
   // Check if current route is public
