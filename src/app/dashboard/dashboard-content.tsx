@@ -79,6 +79,7 @@ interface VideoType {
 interface QuestionType {
   id: string;
   questionText: string;
+  questionImage?: string | null;
   options: string[];
   correctAnswer: number;
   difficulty: string;
@@ -738,6 +739,16 @@ export function DashboardContent({ user }: DashboardContentProps) {
                     <div className="text-sm">
                       <LatexRenderer content={currentQuestion.questionText} />
                     </div>
+                    {currentQuestion.questionImage && (
+                      <div className="w-full max-w-md rounded-lg border border-white/10 overflow-hidden bg-black/20">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={currentQuestion.questionImage}
+                          alt="Question image"
+                          className="w-full h-auto max-h-[250px] object-contain"
+                        />
+                      </div>
+                    )}
                     <div className="space-y-2">
                       {currentQuestion.options.map((opt, idx) => (
                         <button

@@ -26,6 +26,7 @@ import {
 } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { LatexRenderer } from "@/components/ui/latex-renderer";
+import { ImageUpload } from "@/components/ui/image-upload";
 
 const difficulties = ["EASY", "MEDIUM", "HARD"] as const;
 
@@ -338,28 +339,13 @@ export default function NewQuestionPage() {
                 <div className="space-y-2">
                   <Label className="flex items-center gap-2">
                     <ImageIcon className="h-4 w-4" />
-                    Question Image URL (Optional)
+                    Question Image (Optional)
                   </Label>
-                  <Input
-                    placeholder="https://example.com/question-diagram.png"
+                  <ImageUpload
                     value={questionImage}
-                    onChange={(e) => setQuestionImage(e.target.value)}
-                    className="border-white/10 bg-white/5"
+                    onChange={(url) => setQuestionImage(url)}
+                    onRemove={() => setQuestionImage("")}
                   />
-                  {questionImage && (
-                    <div className="mt-2 p-2 border border-white/10 rounded-lg">
-                      <Image
-                        src={questionImage}
-                        alt="Question preview"
-                        className="max-h-40 rounded"
-                        width={300}
-                        height={160}
-                        onError={(e) => {
-                          (e.target as HTMLImageElement).style.display = "none";
-                        }}
-                      />
-                    </div>
-                  )}
                 </div>
 
                 <div className="space-y-3">
@@ -435,12 +421,11 @@ export default function NewQuestionPage() {
 
                     {questionImage && (
                       <div className="py-2">
-                        <Image
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
                           src={questionImage}
                           alt="Question image"
-                          className="max-h-60 rounded-lg border border-white/10"
-                          width={500}
-                          height={300}
+                          className="max-h-60 w-auto rounded-lg border border-white/10"
                         />
                       </div>
                     )}
