@@ -240,6 +240,13 @@ export function DashboardContent({ user }: DashboardContentProps) {
           preferredClassLevel: data.preferredClassLevel || "",
           preferredBatch: data.preferredBatch || "",
         });
+        // Set default class filter if not already set
+        if (data.preferredClassLevel && !questionFilters.class) {
+          setQuestionFilters((prev) => ({
+            ...prev,
+            class: data.preferredClassLevel || "",
+          }));
+        }
       }
     } catch {
       console.error("Failed to fetch profile");
@@ -984,8 +991,14 @@ export function DashboardContent({ user }: DashboardContentProps) {
                                   </Badge>
                                 </div>
                                 <p className="font-medium text-sm truncate mt-4 mb-4">
-                      
-                                  Q{idx + 1}. <LatexRenderer content={q.questionText.length > 150 ? q.questionText.slice(0, 150) + "..." : q.questionText} />
+                                  Q{idx + 1}.{" "}
+                                  <LatexRenderer
+                                    content={
+                                      q.questionText.length > 150
+                                        ? q.questionText.slice(0, 150) + "..."
+                                        : q.questionText
+                                    }
+                                  />
                                 </p>
                                 <p className="text-xs text-muted-foreground mt-0.5">
                                   {q.chapter} • {q.topic}
