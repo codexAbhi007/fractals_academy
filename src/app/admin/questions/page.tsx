@@ -14,6 +14,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { DeleteQuestionButton } from "./delete-question-button";
 import { QuestionOptions } from "./question-options";
+import { LatexRenderer } from "@/components/ui/latex-renderer";
 
 async function getQuestions() {
   return await db.select().from(question).orderBy(desc(question.createdAt));
@@ -90,9 +91,8 @@ export default async function AdminQuestionsPage() {
                         {q.difficulty}
                       </Badge>
                     </div>
-                    <CardTitle className="text-base font-medium">
-                      Q{index + 1}. {q.questionText.slice(0, 150)}
-                      {q.questionText.length > 150 ? "..." : ""}
+                    <CardTitle className="text-base font-medium mt-8">
+                      Q{index + 1}. <LatexRenderer content={q.questionText.length > 150 ? q.questionText.slice(0, 150) + "..." : q.questionText} />
                     </CardTitle>
                     <CardDescription className="mt-1">
                       {q.chapter} • {q.topic}

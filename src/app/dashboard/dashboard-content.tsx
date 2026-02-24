@@ -983,9 +983,9 @@ export function DashboardContent({ user }: DashboardContentProps) {
                                     {q.difficulty}
                                   </Badge>
                                 </div>
-                                <p className="font-medium text-sm truncate">
-                                  Q{idx + 1}. {q.questionText.slice(0, 80)}
-                                  {q.questionText.length > 80 ? "..." : ""}
+                                <p className="font-medium text-sm truncate mt-4 mb-4">
+                      
+                                  Q{idx + 1}. <LatexRenderer content={q.questionText.length > 150 ? q.questionText.slice(0, 150) + "..." : q.questionText} />
                                 </p>
                                 <p className="text-xs text-muted-foreground mt-0.5">
                                   {q.chapter} • {q.topic}

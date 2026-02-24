@@ -136,7 +136,7 @@ export function AdminSidebar({ user }: AdminSidebarProps) {
       >
         {/* Logo */}
         <div className="p-4 border-b border-white/10">
-          <Link href="/admin" className="flex items-center gap-2">
+          <Link href="/?home" className="flex items-center gap-2">
             <Image
               src="/logo.png"
               alt="Fractals Academy"
