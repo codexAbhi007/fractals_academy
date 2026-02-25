@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
 import { db } from "@/db";
-import { user } from "@/db/schema";
+import { platformConfig, user } from "@/db/schema";
 import { eq } from "drizzle-orm";
 
 // GET - Fetch current user's profile including preferences
@@ -60,16 +60,7 @@ export async function PUT(req: Request) {
     // Build the update object
     const updateData: {
       name?: string;
-      preferredClassLevel?:
-        | "7"
-        | "8"
-        | "9"
-        | "10"
-        | "11"
-        | "12"
-        | "JEE"
-        | "WBJEE"
-        | null;
+      preferredClassLevel?: string | null;
       preferredBatch?: string | null;
       updatedAt: Date;
     } = {
@@ -80,20 +71,21 @@ export async function PUT(req: Request) {
       updateData.name = name;
     }
 
+    // Fetch dynamic class levels and batches from platformConfig
+    const [classesConfig] = await db
+      .select()
+      .from(platformConfig)
+      .where(eq(platformConfig.key, "classes"));
+    const validClassLevels: string[] = classesConfig?.value || [];
+
+    const [batchesConfig] = await db
+      .select()
+      .from(platformConfig)
+      .where(eq(platformConfig.key, "batches"));
+    const validBatches: string[] = batchesConfig?.value || [];
+
     if (preferredClassLevel !== undefined) {
-      // Validate class level
-      const validClassLevels = [
-        "7",
-        "8",
-        "9",
-        "10",
-        "11",
-        "12",
-        "JEE",
-        "WBJEE",
-        null,
-      ];
-      if (!validClassLevels.includes(preferredClassLevel)) {
+      if (!validClassLevels.includes(preferredClassLevel) && preferredClassLevel !== null) {
         return NextResponse.json(
           { error: "Invalid class level" },
           { status: 400 },
@@ -103,9 +95,7 @@ export async function PUT(req: Request) {
     }
 
     if (preferredBatch !== undefined) {
-      // Validate batch
-      const validBatches = ["JEE", "WBJEE", "BOARDS", null];
-      if (!validBatches.includes(preferredBatch)) {
+      if (!validBatches.includes(preferredBatch) && preferredBatch !== null) {
         return NextResponse.json({ error: "Invalid batch" }, { status: 400 });
       }
       updateData.preferredBatch = preferredBatch;

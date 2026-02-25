@@ -344,9 +344,7 @@ export default function AdminAnalyticsPage() {
                   <div key={item.classLevel} className="space-y-1">
                     <div className="flex items-center justify-between text-sm">
                       <span>
-                        {["JEE", "WBJEE"].includes(item.classLevel)
-                          ? item.classLevel
-                          : `Class ${item.classLevel}`}
+                        {`${item.classLevel}`}
                       </span>
                       <span className="text-muted-foreground">
                         {item.count}

@@ -3,78 +3,8 @@ import { db } from "@/db";
 import { platformConfig, chapter } from "@/db/schema";
 import { requireAdmin } from "@/lib/session";
 import { eq } from "drizzle-orm";
-import { nanoid } from "nanoid";
 
-// Default values
-const DEFAULT_CLASSES = ["7", "8", "9", "10", "11", "12", "JEE", "WBJEE"];
-const DEFAULT_SUBJECTS = ["MATHEMATICS", "PHYSICS", "CHEMISTRY", "SCIENCE"];
-const DEFAULT_CHAPTERS: Record<string, string[]> = {
-  MATHEMATICS: [
-    "Algebra",
-    "Trigonometry",
-    "Coordinate Geometry",
-    "Calculus",
-    "Vectors & 3D Geometry",
-    "Probability & Statistics",
-    "Sets & Relations",
-    "Complex Numbers",
-    "Matrices & Determinants",
-    "Sequences & Series",
-    "Permutations & Combinations",
-    "Limits & Continuity",
-    "Differential Equations",
-    "Integral Calculus",
-  ],
-  PHYSICS: [
-    "Mechanics",
-    "Kinematics",
-    "Laws of Motion",
-    "Work, Energy & Power",
-    "Rotational Motion",
-    "Gravitation",
-    "Thermodynamics",
-    "Waves & Oscillations",
-    "Optics",
-    "Electrostatics",
-    "Current Electricity",
-    "Magnetism",
-    "Electromagnetic Induction",
-    "Modern Physics",
-    "Semiconductors",
-  ],
-  CHEMISTRY: [
-    "Atomic Structure",
-    "Chemical Bonding",
-    "States of Matter",
-    "Thermodynamics",
-    "Equilibrium",
-    "Redox Reactions",
-    "Electrochemistry",
-    "Chemical Kinetics",
-    "Organic Chemistry Basics",
-    "Hydrocarbons",
-    "Polymers",
-    "Biomolecules",
-    "Coordination Compounds",
-    "Periodic Table",
-  ],
-  SCIENCE: [
-    "Motion",
-    "Force & Laws of Motion",
-    "Gravitation",
-    "Work & Energy",
-    "Sound",
-    "Light",
-    "Electricity",
-    "Magnetism",
-    "Chemical Reactions",
-    "Acids, Bases & Salts",
-    "Metals & Non-metals",
-    "Carbon Compounds",
-    "Life Processes",
-    "Heredity & Evolution",
-  ],
-};
+import { nanoid } from "nanoid";
 
 // Helper to get or initialize config
 async function getConfig(key: string, defaultValue: string[]) {
@@ -84,25 +14,24 @@ async function getConfig(key: string, defaultValue: string[]) {
     .where(eq(platformConfig.key, key));
 
   if (!config) {
-    // Initialize with defaults
+    // Initialize with empty array if missing
     await db.insert(platformConfig).values({
       id: nanoid(),
       key,
-      value: defaultValue,
+      value: [],
       updatedAt: new Date(),
     });
-    return defaultValue;
+    return [];
   }
-
   return config.value;
 }
 
 // GET - Fetch all categories
 export async function GET() {
   try {
-    // Get classes and subjects from config (or defaults)
-    const classes = await getConfig("classes", DEFAULT_CLASSES);
-    const subjects = await getConfig("subjects", DEFAULT_SUBJECTS);
+    // Get classes and subjects from config (no defaults)
+    const classes = await getConfig("classes", []);
+    const subjects = await getConfig("subjects", []);
 
     // Get chapters from database
     const chaptersFromDb = await db.select().from(chapter);
@@ -113,8 +42,7 @@ export async function GET() {
       const subjChapters = chaptersFromDb
         .filter((c) => c.subject === subj)
         .map((c) => c.name);
-      chaptersObj[subj] =
-        subjChapters.length > 0 ? subjChapters : DEFAULT_CHAPTERS[subj] || [];
+      chaptersObj[subj] = subjChapters;
     }
 
     return NextResponse.json({

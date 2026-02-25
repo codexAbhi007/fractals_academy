@@ -99,22 +99,8 @@ export default function EditVideoPage({
     fetchData();
   }, [id, router]);
 
-  const classLevels = categories?.classes || [
-    "7",
-    "8",
-    "9",
-    "10",
-    "11",
-    "12",
-    "JEE",
-    "WBJEE",
-  ];
-  const subjects = categories?.subjects || [
-    "MATHEMATICS",
-    "PHYSICS",
-    "CHEMISTRY",
-    "SCIENCE",
-  ];
+  const classLevels = categories?.classes || [];
+  const subjects = categories?.subjects || [];
   const availableChapters =
     formData.subject && categories
       ? categories.chapters[formData.subject] || []

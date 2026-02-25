@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
 import { db } from "@/db";
-import { video, user } from "@/db/schema";
+import { video, user, platformConfig } from "@/db/schema";
 import { eq, desc, or, sql } from "drizzle-orm";
 
 // GET - Fetch recommended videos for home page
@@ -44,32 +44,27 @@ export async function GET(req: NextRequest) {
     // Build query based on preferences
     let videosQuery;
 
+    // Fetch dynamic class levels from platformConfig
+    const [classesConfig] = await db
+      .select()
+      .from(platformConfig)
+      .where(eq(platformConfig.key, "classes"));
+    const dynamicClassLevels: string[] = classesConfig?.value || [];
+
     if (preferredClassLevel || preferredBatch) {
       // User has preferences - get matching videos first, then fill with others
       const conditions = [];
 
-      if (preferredClassLevel) {
-        conditions.push(
-          eq(
-            video.classLevel,
-            preferredClassLevel as
-              | "7"
-              | "8"
-              | "9"
-              | "10"
-              | "11"
-              | "12"
-              | "JEE"
-              | "WBJEE",
-          ),
-        );
+      if (
+        preferredClassLevel &&
+        dynamicClassLevels.includes(preferredClassLevel)
+      ) {
+        conditions.push(eq(video.classLevel, preferredClassLevel));
       }
 
-      // For batch preferences (JEE, WBJEE), also match videos with those class levels
-      if (preferredBatch === "JEE") {
-        conditions.push(eq(video.classLevel, "JEE"));
-      } else if (preferredBatch === "WBJEE") {
-        conditions.push(eq(video.classLevel, "WBJEE"));
+      // For batch preferences, match videos with those class levels if present in dynamic config
+      if (preferredBatch && dynamicClassLevels.includes(preferredBatch)) {
+        conditions.push(eq(video.classLevel, preferredBatch));
       }
 
       if (conditions.length > 0) {
@@ -156,7 +151,11 @@ export async function GET(req: NextRequest) {
         .limit(limit);
     }
 
-    return NextResponse.json(videosQuery);
+    // Deduplicate videos by ID before returning
+    const uniqueVideos = Array.from(
+      new Map(videosQuery.map((v) => [v.id, v])).values(),
+    );
+    return NextResponse.json(uniqueVideos);
   } catch (error) {
     console.error("Error fetching recommended videos:", error);
     return NextResponse.json(

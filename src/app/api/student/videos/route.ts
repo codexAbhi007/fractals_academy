@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { db } from "@/db";
 import { video } from "@/db/schema";
-import { desc, eq } from "drizzle-orm";
+import { desc, eq, and } from "drizzle-orm";
 
 export async function GET(request: Request) {
   try {
@@ -9,57 +9,24 @@ export async function GET(request: Request) {
     const classLevel = searchParams.get("class");
     const subject = searchParams.get("subject");
 
-    let query = db.select().from(video);
-
-    // Build filter conditions
-    const conditions = [];
-    if (classLevel) {
-      conditions.push(
-        eq(
-          video.classLevel,
-          classLevel as "7" | "8" | "9" | "10" | "11" | "12" | "JEE" | "WBJEE",
-        ),
-      );
-    }
-    if (subject) {
-      conditions.push(
-        eq(
-          video.subject,
-          subject as "MATHEMATICS" | "PHYSICS" | "CHEMISTRY" | "SCIENCE",
-        ),
-      );
-    }
-
-    const videos =
-      conditions.length > 0
-        ? await query.where(conditions[0]).orderBy(desc(video.createdAt))
-        : await query.orderBy(desc(video.createdAt));
-
-    // If we have two conditions, we need to use both (AND logic)
-    // For simplicity, let's refetch with proper filtering
+    // Build filter conditions (no enums, all text)
+    let whereClause = undefined;
     if (classLevel && subject) {
-      const filtered = await db
-        .select()
-        .from(video)
-        .where(
-          eq(
-            video.classLevel,
-            classLevel as
-              | "7"
-              | "8"
-              | "9"
-              | "10"
-              | "11"
-              | "12"
-              | "JEE"
-              | "WBJEE",
-          ),
-        )
-        .orderBy(desc(video.createdAt));
-
-      const result = filtered.filter((v) => v.subject === subject);
-      return NextResponse.json(result);
+      whereClause = and(
+        eq(video.classLevel, classLevel),
+        eq(video.subject, subject),
+      );
+    } else if (classLevel) {
+      whereClause = eq(video.classLevel, classLevel);
+    } else if (subject) {
+      whereClause = eq(video.subject, subject);
     }
+
+    const videos = await db
+      .select()
+      .from(video)
+      .where(whereClause)
+      .orderBy(desc(video.createdAt));
 
     return NextResponse.json(videos);
   } catch (error) {

@@ -120,8 +120,6 @@ interface CategoriesType {
   chapters: Record<string, string[]>;
 }
 
-const defaultClasses = ["7", "8", "9", "10", "11", "12", "JEE", "WBJEE"];
-const defaultSubjects = ["PHYSICS", "CHEMISTRY", "MATHEMATICS", "SCIENCE"];
 const difficulties = ["EASY", "MEDIUM", "HARD"];
 
 // Button base styles for interactive animations
@@ -134,8 +132,8 @@ export function DashboardContent({ user }: DashboardContentProps) {
 
   // Dynamic categories
   const [categories, setCategories] = useState<CategoriesType | null>(null);
-  const classLevels = categories?.classes || defaultClasses;
-  const subjects = categories?.subjects || defaultSubjects;
+  const classLevels = categories?.classes || [];
+  const subjects = categories?.subjects || [];
 
   // Stats
   const [stats, setStats] = useState<StatsType | null>(null);
@@ -240,9 +238,16 @@ export function DashboardContent({ user }: DashboardContentProps) {
           preferredClassLevel: data.preferredClassLevel || "",
           preferredBatch: data.preferredBatch || "",
         });
-        // Set default class filter if not already set
+        // Set default class filter for questions if not already set
         if (data.preferredClassLevel && !questionFilters.class) {
           setQuestionFilters((prev) => ({
+            ...prev,
+            class: data.preferredClassLevel || "",
+          }));
+        }
+        // Set default class filter for videos if not already set
+        if (data.preferredClassLevel && !videoFilters.class) {
+          setVideoFilters((prev) => ({
             ...prev,
             class: data.preferredClassLevel || "",
           }));
@@ -1299,9 +1304,7 @@ export function DashboardContent({ user }: DashboardContentProps) {
                                   value={c}
                                   className="cursor-pointer"
                                 >
-                                  {["JEE", "WBJEE"].includes(c)
-                                    ? c
-                                    : `Class ${c}`}
+                                  {`${c}`}
                                 </SelectItem>
                               ))}
                             </SelectContent>

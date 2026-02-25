@@ -6,6 +6,7 @@ import {
   AboutSection,
   LatestVideosSection,
   ContactSection,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   CTASection,
   Footer,
 } from "@/components/landing";

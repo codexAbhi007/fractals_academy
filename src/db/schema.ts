@@ -12,22 +12,7 @@ import {
 // ==================== ENUMS ====================
 export const userRoleEnum = pgEnum("user_role", ["STUDENT", "ADMIN"]);
 export const difficultyEnum = pgEnum("difficulty", ["EASY", "MEDIUM", "HARD"]);
-export const classEnum = pgEnum("class_level", [
-  "7",
-  "8",
-  "9",
-  "10",
-  "11",
-  "12",
-  "JEE",
-  "WBJEE",
-]);
-export const subjectEnum = pgEnum("subject", [
-  "MATHEMATICS",
-  "PHYSICS",
-  "CHEMISTRY",
-  "SCIENCE",
-]);
+
 
 // ==================== BETTER AUTH TABLES ====================
 // These tables follow Better Auth's schema requirements
@@ -40,8 +25,8 @@ export const user = pgTable("user", {
   image: text("image"),
   role: userRoleEnum("role").notNull().default("STUDENT"),
   // Student preferences for personalized content
-  preferredClassLevel: classEnum("preferred_class_level"),
-  preferredBatch: text("preferred_batch"), // JEE, WBJEE, BOARDS, etc.
+  preferredClassLevel: text("preferred_class_level"),
+  preferredBatch: text("preferred_batch"), 
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });
@@ -96,8 +81,8 @@ export const video = pgTable("video", {
   title: text("title").notNull(),
   thumbnail: text("thumbnail").notNull(),
   description: text("description"),
-  classLevel: classEnum("class_level").notNull(),
-  subject: subjectEnum("subject").notNull(),
+  classLevel: text("class_level").notNull(),
+  subject: text("subject").notNull(),
   chapter: text("chapter"),
   topic: text("topic"),
   createdAt: timestamp("created_at").notNull().defaultNow(),
@@ -110,8 +95,8 @@ export const video = pgTable("video", {
 // Question Bank
 export const question = pgTable("question", {
   id: text("id").primaryKey(),
-  classLevel: classEnum("class_level").notNull(),
-  subject: subjectEnum("subject").notNull(),
+  classLevel: text("class_level").notNull(),
+  subject: text("subject").notNull(),
   chapter: text("chapter").notNull(),
   topic: text("topic").notNull(),
   questionText: text("question_text").notNull(), // LaTeX supported

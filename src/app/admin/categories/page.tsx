@@ -433,7 +433,7 @@ export default function AdminCategoriesPage() {
           <Input
             value={newValue}
             onChange={(e) => setNewValue(e.target.value)}
-            placeholder="e.g., 13, NEET, etc."
+            placeholder="e.g. NEET, M.Sc etc."
             className="border-white/10 bg-white/5"
             onKeyDown={(e) => e.key === "Enter" && addClass()}
           />

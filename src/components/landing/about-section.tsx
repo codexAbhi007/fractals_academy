@@ -91,7 +91,7 @@ export function AboutSection() {
               </span>
             </h2>
 
-            <p className="text-muted-foreground mb-6 leading-relaxed">
+            <p className="text-muted-foreground mb-3 leading-relaxed">
               Founded by{" "}
               <strong className="text-foreground">Sayantan Sarcar</strong>,
               Fractals Academy is dedicated to making mathematics accessible and
@@ -99,39 +99,75 @@ export function AboutSection() {
               teaching experience, we specialize in building strong foundations
               and problem-solving skills.
             </p>
-
-            <div className="space-y-4 mb-8">
-              <div className="flex items-start gap-3">
-                <div className="h-6 w-6 rounded-full bg-purple-500/20 flex items-center justify-center mt-0.5">
-                  <span className="text-purple-400 text-sm">✓</span>
-                </div>
-                <div>
-                  <div className="font-medium">Personalized Learning</div>
-                  <div className="text-sm text-muted-foreground">
-                    Individual attention to understand each student&apos;s
-                    unique learning style
+            <div className="mb-8">
+              <h3 className="text-lg font-semibold mb-2 text-foreground">
+                Qualifications
+              </h3>
+              <ul className="text-muted-foreground text-sm list-disc list-inside pl-4">
+                <li>
+                  <strong>B.Sc in Mathematics</strong> –
+                  <a
+                    href="https://www.caluniv.ac.in/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-purple-400 hover:underline"
+                  >
+                    University of Calcutta, Kolkata, West Bengal
+                  </a>
+                </li>
+                <li>
+                  <strong>M.Sc Mathematics in</strong> – 
+                  <a
+                    href="https://www.iacs.res.in/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-purple-400 hover:underline"
+                  >
+                    Indian Association for the Cultivation of Science
+                  </a>
+                </li>
+                <li>
+                  Secured<strong> All India Rank 22</strong> in ISI M.Tech Entrance Exam (CS)
+                </li>
+              </ul>
+            </div>
+            <div className="mb-8">
+              <h3 className="text-lg font-semibold mb-2 text-foreground">
+                Why Choose Us?
+              </h3>
+              <div className="space-y-4">
+                <div className="flex items-start gap-3">
+                  <div className="h-6 w-6 rounded-full bg-purple-500/20 flex items-center justify-center mt-0.5">
+                    <span className="text-purple-400 text-sm">✓</span>
+                  </div>
+                  <div>
+                    <div className="font-medium">Personalized Learning</div>
+                    <div className="text-sm text-muted-foreground">
+                      Individual attention to understand each student&apos;s
+                      unique learning style
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <div className="h-6 w-6 rounded-full bg-pink-500/20 flex items-center justify-center mt-0.5">
-                  <span className="text-pink-400 text-sm">✓</span>
-                </div>
-                <div>
-                  <div className="font-medium">Competitive Exam Focus</div>
-                  <div className="text-sm text-muted-foreground">
-                    Specialized preparation for JEE Main, JEE Advanced & WBJEE
+                <div className="flex items-start gap-3">
+                  <div className="h-6 w-6 rounded-full bg-pink-500/20 flex items-center justify-center mt-0.5">
+                    <span className="text-pink-400 text-sm">✓</span>
+                  </div>
+                  <div>
+                    <div className="font-medium">Competitive Exam Focus</div>
+                    <div className="text-sm text-muted-foreground">
+                      Specialized preparation for JEE Main, JEE Advanced & WBJEE
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <div className="h-6 w-6 rounded-full bg-cyan-500/20 flex items-center justify-center mt-0.5">
-                  <span className="text-cyan-400 text-sm">✓</span>
-                </div>
-                <div>
-                  <div className="font-medium">Regular Assessments</div>
-                  <div className="text-sm text-muted-foreground">
-                    Weekly tests and detailed performance analysis
+                <div className="flex items-start gap-3">
+                  <div className="h-6 w-6 rounded-full bg-cyan-500/20 flex items-center justify-center mt-0.5">
+                    <span className="text-cyan-400 text-sm">✓</span>
+                  </div>
+                  <div>
+                    <div className="font-medium">Regular Assessments</div>
+                    <div className="text-sm text-muted-foreground">
+                      Weekly tests and detailed performance analysis
+                    </div>
                   </div>
                 </div>
               </div>

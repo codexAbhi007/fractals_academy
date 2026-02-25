@@ -156,9 +156,7 @@ export default function AdminStudentsPage() {
                       className="border-purple-500/50 text-purple-400 text-xs"
                     >
                       <GraduationCap className="h-3 w-3 mr-1" />
-                      {["JEE", "WBJEE"].includes(student.preferredClassLevel)
-                        ? student.preferredClassLevel
-                        : `Class ${student.preferredClassLevel}`}
+                      {`Class ${student.preferredClassLevel}`}
                     </Badge>
                   )}
                   {student.preferredBatch && (
