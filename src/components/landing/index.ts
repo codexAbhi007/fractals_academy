@@ -1,5 +1,6 @@
 export { Navbar } from "./navbar";
 export { HeroSection } from "./hero-section";
+export { CoursesSection } from "./courses-section";
 export { FeaturesSection } from "./features-section";
 export { AboutSection } from "./about-section";
 export { LatestVideosSection } from "./videos-section";

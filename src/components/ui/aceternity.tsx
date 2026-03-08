@@ -136,8 +136,8 @@ export function GlowingText({
 export function BackgroundBeams({ className }: { className?: string }) {
   return (
     <div className={cn("absolute inset-0 z-0 overflow-hidden", className)}>
-      <div className="absolute -top-40 -right-40 h-80 w-80 rounded-full bg-purple-500/30 blur-3xl" />
-      <div className="absolute -bottom-40 -left-40 h-80 w-80 rounded-full bg-cyan-500/30 blur-3xl" />
+      <div className="absolute -top-40 -right-40 h-80 w-80 rounded-full bg-purple-500/10 blur-3xl" />
+      <div className="absolute -bottom-40 -left-40 h-80 w-80 rounded-full bg-cyan-500/10 blur-3xl" />
     </div>
   );
 }
@@ -210,7 +210,7 @@ export function GridBackground({ className }: { className?: string }) {
         className,
       )}
     >
-      <div className="absolute inset-0 bg-linear-to-t from-background via-transparent to-transparent" />
+      <div className="absolute inset-0 bg-linear-to-t from-background/50 via-transparent to-transparent" />
     </div>
   );
 }

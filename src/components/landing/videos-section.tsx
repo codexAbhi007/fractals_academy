@@ -109,11 +109,7 @@ export function LatestVideosSection() {
   }, []);
 
   return (
-    <section
-      id="videos"
-      ref={ref}
-      className="relative py-24 bg-linear-to-b from-background/50 to-background"
-    >
+    <section id="videos" ref={ref} className="relative py-24">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

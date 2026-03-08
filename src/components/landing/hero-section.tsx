@@ -7,7 +7,6 @@ import { Phone } from "lucide-react";
 import {
   FloatingParticles,
   GlowingText,
-  GridBackground,
   HoverBorderGradient,
   TextGenerateEffect,
 } from "@/components/ui/aceternity";
@@ -33,7 +32,6 @@ export function HeroSection() {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pb-8">
-      <GridBackground />
       <FloatingParticles />
 
       <div className="container relative z-10 mx-auto px-4 py-20 text-center">

@@ -85,7 +85,10 @@ export async function PUT(req: Request) {
     const validBatches: string[] = batchesConfig?.value || [];
 
     if (preferredClassLevel !== undefined) {
-      if (!validClassLevels.includes(preferredClassLevel) && preferredClassLevel !== null) {
+      if (
+        !validClassLevels.includes(preferredClassLevel) &&
+        preferredClassLevel !== null
+      ) {
         return NextResponse.json(
           { error: "Invalid class level" },
           { status: 400 },

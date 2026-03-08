@@ -48,8 +48,8 @@ export function ContactSection() {
   ];
 
   return (
-    <section ref={ref} className="relative py-24 overflow-hidden">
-      <BackgroundBeams />
+    <section id="contact" ref={ref} className="relative py-24 overflow-hidden">
+      {/* <BackgroundBeams /> */}
 
       <div className="container relative z-10 mx-auto px-4">
         <motion.div
@@ -89,7 +89,7 @@ export function ContactSection() {
                   className="block"
                 >
                   <Card className="border-white/10 bg-white/5 hover:bg-white/8 transition-all group cursor-pointer h-full">
-                    <CardContent className="p-4 sm:p-5 flex flex-col items-center text-center h-full justify-center min-h-[140px]">
+                    <CardContent className="p-4 sm:p-5 flex flex-col items-center text-center h-full justify-center min-h-35">
                       <div
                         className={`p-3 rounded-xl ${info.bgColor} transition-all group-hover:scale-110 mb-3`}
                       >
@@ -100,7 +100,7 @@ export function ContactSection() {
                       <p className="text-xs sm:text-sm text-muted-foreground mb-1">
                         {info.title}
                       </p>
-                      <p className="font-medium text-xs sm:text-sm leading-tight break-words max-w-full">
+                      <p className="font-medium text-xs sm:text-sm leading-tight wrap-break-word max-w-full">
                         {info.value}
                       </p>
                     </CardContent>

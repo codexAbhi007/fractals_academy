@@ -1,6 +1,6 @@
 "use client";
 
-import { useSyncExternalStore } from "react";
+import { useEffect, useSyncExternalStore } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
@@ -20,6 +20,14 @@ export function Navbar() {
     getServerSnapshot,
   );
 
+  // On mount/refresh, clear any hash and scroll to top
+  useEffect(() => {
+    if (window.location.hash) {
+      window.history.replaceState(null, "", window.location.pathname + "?home");
+      window.scrollTo(0, 0);
+    }
+  }, []);
+
   const getInitials = (name: string) => {
     return name
       .split(" ")
@@ -29,12 +37,25 @@ export function Navbar() {
       .slice(0, 2);
   };
 
+  const scrollTo = (e: React.MouseEvent, id: string) => {
+    e.preventDefault();
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const scrollToTop = (e: React.MouseEvent) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/5 bg-background/80 backdrop-blur-lg">
       <div className="container mx-auto px-4">
         <nav className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <Link href="/?home" className="flex items-center gap-2">
+          <Link href="/?home" onClick={scrollToTop} className="flex items-center gap-2 cursor-pointer">
             <Image
               src="/logo.png"
               alt="Fractals Academy"
@@ -50,30 +71,42 @@ export function Navbar() {
 
           {/* Nav Links */}
           <div className="hidden md:flex items-center gap-8">
-            <Link
-              href="#features"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            <a
+              href="#courses"
+              onClick={(e) => scrollTo(e, "courses")}
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
             >
-              Features
-            </Link>
-            <Link
+              Courses
+            </a>
+            
+            <a
               href="#about"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              onClick={(e) => scrollTo(e, "about")}
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
             >
               About
-            </Link>
-            <Link
+            </a>
+            <a
+              href="#features"
+              onClick={(e) => scrollTo(e, "features")}
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+            >
+              Features
+            </a>
+            <a
               href="#videos"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              onClick={(e) => scrollTo(e, "videos")}
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
             >
               Videos
-            </Link>
-            <Link
+            </a>
+            <a
               href="#contact"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              onClick={(e) => scrollTo(e, "contact")}
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
             >
               Contact
-            </Link>
+            </a>
           </div>
 
           {/* Auth Buttons */}

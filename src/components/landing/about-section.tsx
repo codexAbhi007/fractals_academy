@@ -11,9 +11,6 @@ export function AboutSection() {
 
   return (
     <section id="about" ref={ref} className="relative py-24 overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute inset-0 bg-linear-to-r from-purple-500/10 via-transparent to-cyan-500/10" />
-
       <div className="container relative z-10 mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left: Image/Visual */}
@@ -116,7 +113,7 @@ export function AboutSection() {
                   </a>
                 </li>
                 <li>
-                  <strong>M.Sc Mathematics in</strong> – 
+                  <strong>M.Sc Mathematics in</strong> –
                   <a
                     href="https://www.iacs.res.in/"
                     target="_blank"
@@ -127,7 +124,8 @@ export function AboutSection() {
                   </a>
                 </li>
                 <li>
-                  Secured<strong> All India Rank 22</strong> in ISI M.Tech Entrance Exam (CS)
+                  Secured<strong> All India Rank 22</strong> in ISI M.Tech
+                  Entrance Exam (CS)
                 </li>
               </ul>
             </div>
