@@ -31,7 +31,7 @@ export function Footer() {
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
                 <Link
-                  href="#"
+                  href="#about"
                   className="hover:text-foreground transition-colors"
                 >
                   About Us
@@ -39,7 +39,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="#"
+                  href="#courses"
                   className="hover:text-foreground transition-colors"
                 >
                   Courses
@@ -47,7 +47,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="#"
+                  href="#contact"
                   className="hover:text-foreground transition-colors"
                 >
                   Contact

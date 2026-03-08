@@ -55,7 +55,11 @@ export function Navbar() {
       <div className="container mx-auto px-4">
         <nav className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <Link href="/?home" onClick={scrollToTop} className="flex items-center gap-2 cursor-pointer">
+          <Link
+            href="/?home"
+            onClick={scrollToTop}
+            className="flex items-center gap-2 cursor-pointer"
+          >
             <Image
               src="/logo.png"
               alt="Fractals Academy"
@@ -78,7 +82,7 @@ export function Navbar() {
             >
               Courses
             </a>
-            
+
             <a
               href="#about"
               onClick={(e) => scrollTo(e, "about")}

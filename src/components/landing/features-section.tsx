@@ -151,7 +151,12 @@ function FeatureItem({
         {/* Content */}
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 mb-1">
-            <h3 className={cn("text-base lg:text-xl font-semibold transition-colors duration-300", feature.titleHoverColor)}>
+            <h3
+              className={cn(
+                "text-base lg:text-xl font-semibold transition-colors duration-300",
+                feature.titleHoverColor,
+              )}
+            >
               {feature.title}
             </h3>
             <ArrowRight className="h-4 w-4 text-muted-foreground opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
